@@ -279,13 +279,78 @@
                                     class="dripicons-meter"></i><span><?php echo e(trans('file.Dashboard')); ?></span></a>
                     </li>
                 <?php endif; ?>
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('core_hr')): ?>
+                <li class="has-dropdown <?php echo e((request()->is('core_hr*')) ? 'active' : ''); ?>">
+
+                    <?php if(auth()->user()->can('view-promotion')||auth()->user()->can('view-award') || auth()->user()->can('view-travel')||auth()->user()->can('view-transfer')||auth()->user()->can('view-resignation')||auth()->user()->can('view-complaint')||auth()->user()->can('view-warning')||auth()->user()->can('view-termination')): ?>
+                        <a href="#Core_hr" aria-expanded="false" data-toggle="collapse">
+                            <i class="dripicons-briefcase"></i><span><?php echo e(__('HR')); ?></span>
+                        </a>
+                    <?php endif; ?>
+
+                    <ul id="Core_hr" class="collapse list-unstyled">
+
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-promotion')): ?>
+                            <li id="promotion"><a
+                                        href="<?php echo e(route('promotions.index')); ?>"><?php echo e(trans('file.Promotion')); ?></a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-award')): ?>
+                            <li id="award"><a href="<?php echo e(route('awards.index')); ?>"><?php echo e(trans('file.Award')); ?></a></li>
+                        <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-travel')): ?>
+                            <li id="travel"><a href="<?php echo e(route('travels.index')); ?>"><?php echo e(trans('file.Travel')); ?></a></li>
+                        <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-transfer')): ?>
+                            <li id="transfer"><a href="<?php echo e(route('transfers.index')); ?>"><?php echo e(trans('file.Transfer')); ?></a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-resignation')): ?>
+                            <li id="resignation"><a
+                                        href="<?php echo e(route('resignations.index')); ?>"><?php echo e(trans('file.Resignations')); ?></a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-complaint')): ?>
+                            <li id="complaint"><a
+                                        href="<?php echo e(route('complaints.index')); ?>"><?php echo e(trans('file.Complaints')); ?></a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-warning')): ?>
+                            <li id="warning"><a href="<?php echo e(route('warnings.index')); ?>"><?php echo e(trans('file.Warnings')); ?></a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-termination')): ?>
+                            <li id="termination"><a
+                                        href="<?php echo e(route('terminations.index')); ?>"><?php echo e(trans('file.Terminations')); ?></a>
+                            </li>
+                        <?php endif; ?>
+
+                    </ul>
+                </li>
+            <?php endif; ?>
+
+
+            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-details-employee')): ?>
+            <li class="has-dropdown <?php echo e((request()->is('staff*')) ? 'active' : ''); ?>">
+                <a href="#employees" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-user-group"></i><span><?php echo e(trans('file.Employees')); ?></span></a>
+                <ul id="employees" class="collapse list-unstyled ">
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-details-employee')): ?>
+                        <li id="employee_list"><a href="<?php echo e(route('employees.index')); ?>"><?php echo e(__('Employees')); ?></a></li>
+                    <?php endif; ?>
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('import-employee')): ?>
+                        <li id="user-import"><a href="<?php echo e(route('employees.import')); ?>"><?php echo e(__('Import Employees')); ?></a>
+                        </li>
+                    <?php endif; ?>
+                </ul>
+            </li>
+        <?php endif; ?>
 
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('user')): ?>
                     <li class="has-dropdown <?php if(request()->is('user*')): ?><?php echo e((request()->is('user*')) ? 'active' : ''); ?><?php elseif(request()->is('add-user*')): ?><?php echo e((request()->is('add-user*')) ? 'active' : ''); ?><?php endif; ?>">
                         <?php if(auth()->user()->can('view-user')): ?>
                             <a href="#users" aria-expanded="false" data-toggle="collapse">
                                 <i class="dripicons-user"></i>
-                                <span><?php echo e(trans('file.User')); ?></span>
+                                <span><?php echo e(__('User Management')); ?></span>
                             </a>
                         <?php endif; ?>
                         <ul id="users" class="collapse list-unstyled ">
@@ -307,208 +372,149 @@
                     </li>
                 <?php endif; ?>
 
-                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-details-employee')): ?>
-                    <li class="has-dropdown <?php echo e((request()->is('staff*')) ? 'active' : ''); ?>">
-                        <a href="#employees" aria-expanded="false" data-toggle="collapse"> <i class="dripicons-user-group"></i><span><?php echo e(trans('file.Employees')); ?></span></a>
-                        <ul id="employees" class="collapse list-unstyled ">
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-details-employee')): ?>
-                                <li id="employee_list"><a href="<?php echo e(route('employees.index')); ?>"><?php echo e(__('Employee Lists')); ?></a></li>
-                            <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('import-employee')): ?>
-                                <li id="user-import"><a href="<?php echo e(route('employees.import')); ?>"><?php echo e(__('Import Employees')); ?></a>
-                                </li>
-                            <?php endif; ?>
-                        </ul>
-                    </li>
-                <?php endif; ?>
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('event-meeting')): ?>
+                <li class="has-dropdown <?php if(request()->is('events*')): ?><?php echo e((request()->is('events*')) ? 'active' : ''); ?><?php elseif(request()->is('meetings*')): ?><?php echo e((request()->is('meetings*')) ? 'active' : ''); ?><?php endif; ?>">
 
-                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('customize-setting')): ?>
-                    <li class="has-dropdown <?php echo e((request()->is('settings*')) ? 'active' : ''); ?>">
-
-
-                        <?php if(auth()->user()->can('view-role')||auth()->user()->can('view-general-setting')||auth()->user()->can('access-language')||auth()->user()->can('access-variable_type')||auth()->user()->can('access-variable_method')||auth()->user()->can('view-general-setting')): ?>
-                            <a href="#Customize_settings" aria-expanded="false" data-toggle="collapse">
-                                <i class="dripicons-toggles"></i><span><?php echo e(__('Customize Setting')); ?></span>
-                            </a>
+                    <?php if(auth()->user()->can('view-event') || auth()->user()->can('view-meeting')): ?>
+                        <a href="#Events_Meetings" aria-expanded="false" data-toggle="collapse"> <i
+                                    class="dripicons-to-do"></i><span><?php echo e(trans('file.Events')); ?> & <?php echo e(trans('file.Meetings')); ?></span>
+                        </a>
+                    <?php endif; ?>
+                    <ul id="Events_Meetings" class="collapse list-unstyled ">
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-event')): ?>
+                            <li id="events"><a
+                                        href="<?php echo e(route('events.index')); ?>"><?php echo e(trans('file.Events')); ?></a>
+                            </li>
                         <?php endif; ?>
                         
+                    </ul>
+                    <?php endif; ?>
+                </li>
 
-                        <ul id="Customize_settings" class="collapse list-unstyled ">
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-role')): ?>
-                                <li id="roles"><a href="<?php echo e(route('roles.index')); ?>"><?php echo e(__('Roles and Access')); ?></a></li>
-                            <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-general-setting')): ?>
-                                <li id="general_settings"><a
-                                            href="<?php echo e(route('general_settings.index')); ?>"><?php echo e(__('General Settings')); ?></a>
-                                </li>
-                            <?php endif; ?>
-
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-mail-setting')): ?>
-                                <li id="mail_setting"><a
-                                            href="<?php echo e(route('setting.mail')); ?>"><?php echo e(__('Mail Setting')); ?></a>
-                                </li>
-                            <?php endif; ?>
-
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('access-language')): ?>
-                                <li id="language_switch"><a
-                                            href="<?php echo e(route('languages.translations.index','English')); ?>"><?php echo e(__('Language Settings')); ?></a>
-                                </li>
-                            <?php endif; ?>
-
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('access-variable_type')): ?>
-                                <li id="variable_type"><a
-                                            href="<?php echo e(route('variables.index')); ?>"><?php echo e(__('Variable Type')); ?></a>
-                                </li>
-                            <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('access-variable_method')): ?>
-                                <li id="variable_method"><a
-                                            href="<?php echo e(route('variables_method.index')); ?>"><?php echo e(__('Variable Method')); ?></a>
-                                </li>
-                            <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-general-setting')): ?>
-                                <li id="ip_setting"><a href="<?php echo e(route('ip_setting.index')); ?>"><?php echo e(__('IP Settings')); ?></a></li>
-                            <?php endif; ?>
-
-                        </ul>
-                    </li>
-                <?php endif; ?>
-
-                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('core_hr')): ?>
-                    <li class="has-dropdown <?php echo e((request()->is('core_hr*')) ? 'active' : ''); ?>">
-
-                        <?php if(auth()->user()->can('view-promotion')||auth()->user()->can('view-award') || auth()->user()->can('view-travel')||auth()->user()->can('view-transfer')||auth()->user()->can('view-resignation')||auth()->user()->can('view-complaint')||auth()->user()->can('view-warning')||auth()->user()->can('view-termination')): ?>
-                            <a href="#Core_hr" aria-expanded="false" data-toggle="collapse">
-                                <i class="dripicons-briefcase"></i><span><?php echo e(__('Core HR')); ?></span>
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('project-management')): ?>
+                    <li class="has-dropdown <?php echo e((request()->is('project-management*')) ? 'active' : ''); ?>">
+                        <?php if(auth()->user()->can('view-project') || auth()->user()->can('view-task') || auth()->user()->can('client') || auth()->user()->can('view-invoice')): ?>
+                            <a href="#Project_Management" aria-expanded="false" data-toggle="collapse">
+                                <i class="dripicons-checklist"></i><span><?php echo e(__('Project Management')); ?></span>
                             </a>
-                        <?php endif; ?>
-
-                        <ul id="Core_hr" class="collapse list-unstyled">
-
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-promotion')): ?>
-                                <li id="promotion"><a
-                                            href="<?php echo e(route('promotions.index')); ?>"><?php echo e(trans('file.Promotion')); ?></a>
+                <?php endif; ?>
+                        <ul id="Project_Management" class="collapse list-unstyled ">
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-project')): ?>
+                                <li id="projects"><a
+                                            href="<?php echo e(route('projects.index')); ?>"><?php echo e(trans(('file.Projects'))); ?></a>
                                 </li>
                             <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-award')): ?>
-                                <li id="award"><a href="<?php echo e(route('awards.index')); ?>"><?php echo e(trans('file.Award')); ?></a></li>
-                            <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-travel')): ?>
-                                <li id="travel"><a href="<?php echo e(route('travels.index')); ?>"><?php echo e(trans('file.Travel')); ?></a></li>
-                            <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-transfer')): ?>
-                                <li id="transfer"><a href="<?php echo e(route('transfers.index')); ?>"><?php echo e(trans('file.Transfer')); ?></a>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-task')): ?>
+                                <li id="tasks"><a
+                                            href="<?php echo e(route('tasks.index')); ?>"><?php echo e(trans(('file.Tasks'))); ?></a>
                                 </li>
                             <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-resignation')): ?>
-                                <li id="resignation"><a
-                                            href="<?php echo e(route('resignations.index')); ?>"><?php echo e(trans('file.Resignations')); ?></a>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('client')): ?>
+                                <li id="clients"><a
+                                            href="<?php echo e(route('clients.index')); ?>"><?php echo e(trans(('file.Client'))); ?></a>
                                 </li>
                             <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-complaint')): ?>
-                                <li id="complaint"><a
-                                            href="<?php echo e(route('complaints.index')); ?>"><?php echo e(trans('file.Complaints')); ?></a>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-invoice')): ?>
+                                <li id="invoices"><a
+                                            href="<?php echo e(route('invoices.index')); ?>"><?php echo e(trans(('file.Invoice'))); ?></a>
                                 </li>
                             <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-warning')): ?>
-                                <li id="warning"><a href="<?php echo e(route('warnings.index')); ?>"><?php echo e(trans('file.Warnings')); ?></a>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('access-variable_type')): ?>
+                                <li id="tax_type"><a
+                                            href="<?php echo e(route('tax_type.index')); ?>"><?php echo e(__('Tax Type')); ?></a>
                                 </li>
                             <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-termination')): ?>
-                                <li id="termination"><a
-                                            href="<?php echo e(route('terminations.index')); ?>"><?php echo e(trans('file.Terminations')); ?></a>
-                                </li>
-                            <?php endif; ?>
-
                         </ul>
                     </li>
-                <?php endif; ?>
+            <?php endif; ?>
 
 
                 <li class="has-dropdown <?php echo e((request()->is('organization*')) ? 'active' : ''); ?>"><a href="#Organization"
-                                                                                                   aria-expanded="false"
-                                                                                                   data-toggle="collapse">
-                        <i
-                                class="dripicons-view-thumb"></i><span><?php echo e(trans('file.Organization')); ?></span></a>
-                    <ul id="Organization" class="collapse list-unstyled ">
-                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-company')): ?>
-                            <li id="company"><a href="<?php echo e(route('companies.index')); ?>"><?php echo e(trans('file.Company')); ?></a></li>
-                        <?php endif; ?>
-                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-department')): ?>
-                            <li id="department"><a
-                                        href="<?php echo e(route('departments.index')); ?>"><?php echo e(trans('file.Department')); ?></a>
-                            </li>
-                        <?php endif; ?>
+                    aria-expanded="false"
+                    data-toggle="collapse">
+<i
+class="dripicons-view-thumb"></i><span><?php echo e(trans('file.Organization')); ?></span></a>
+<ul id="Organization" class="collapse list-unstyled ">
+<?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-company')): ?>
+<li id="company"><a href="<?php echo e(route('companies.index')); ?>"><?php echo e(trans('file.Company')); ?></a></li>
+<?php endif; ?>
+<?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-department')): ?>
+<li id="department"><a
+href="<?php echo e(route('departments.index')); ?>"><?php echo e(trans('file.Department')); ?></a>
+</li>
+<?php endif; ?>
 
-                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-location')): ?>
-                            <li id="location"><a href="<?php echo e(route('locations.index')); ?>"><?php echo e(trans('file.Location')); ?></a></li>
-                        <?php endif; ?>
-                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-designation')): ?>
-                            <li id="designation"><a
-                                        href="<?php echo e(route('designations.index')); ?>"><?php echo e(trans('file.Designation')); ?></a>
-                            </li>
-                        <?php endif; ?>
+<?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-location')): ?>
+<li id="location"><a href="<?php echo e(route('locations.index')); ?>"><?php echo e(trans('file.Location')); ?></a></li>
+<?php endif; ?>
+<?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-designation')): ?>
+<li id="designation"><a
+href="<?php echo e(route('designations.index')); ?>"><?php echo e(trans('file.Designation')); ?></a>
+</li>
+<?php endif; ?>
 
-                        <li id="announcements"><a
-                                    href="<?php echo e(route('announcements.index')); ?>"><?php echo e(trans('file.Announcements')); ?></a></li>
+<li id="announcements"><a
+href="<?php echo e(route('announcements.index')); ?>"><?php echo e(trans('file.Announcements')); ?></a></li>
 
-                        <li id="company_policy"><a href="<?php echo e(route('policy.index')); ?>"><?php echo e(__('Company Policy')); ?></a>
-                        </li>
+<li id="company_policy"><a href="<?php echo e(route('policy.index')); ?>"><?php echo e(__('Company Policy')); ?></a>
+</li>
 
-                    </ul>
-                </li>
-
-                
-                    <li class="has-dropdown <?php echo e((request()->is('timesheet*')) ? 'active' : ''); ?>"><a href="#Timesheets"
-                                                                                                    aria-expanded="false"
-                                                                                                    data-toggle="collapse">
-                            <i class="dripicons-clock"></i><span><?php echo e(trans('file.Timesheets')); ?></span></a>
-                        <ul id="Timesheets" class="collapse list-unstyled ">
-                        
-                                <li id="attendance"><a
-                                            href="<?php echo e(route('attendances.index')); ?>"><?php echo e(trans('file.Attendances')); ?></a>
-                                </li>
-                                <li id="date_wise_attendance"><a
-                                            href="<?php echo e(route('date_wise_attendances.index')); ?>"> <?php echo e(__('Date wise Attendances')); ?></a>
-                                </li>
+</ul>
+</li>
 
 
-                                <li id="monthly_attendance"><a
-                                            href="<?php echo e(route('monthly_attendances.index')); ?>"> <?php echo e(__('Monthly Attendances')); ?></a>
-                                </li>
-                        
+<li class="has-dropdown <?php echo e((request()->is('timesheet*')) ? 'active' : ''); ?>"><a href="#Timesheets"
+                 aria-expanded="false"
+                 data-toggle="collapse">
+<i class="dripicons-clock"></i><span><?php echo e(trans('file.Timesheets')); ?></span></a>
+<ul id="Timesheets" class="collapse list-unstyled ">
 
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit-attendance')): ?>
-                                <li id="update_attendance"><a
-                                            href="<?php echo e(route('update_attendances.index')); ?>"> <?php echo e(__('Update Attendances')); ?></a>
-                                </li>
-                            <?php endif; ?>
+<li id="attendance"><a
+href="<?php echo e(route('attendances.index')); ?>"><?php echo e(trans('file.Attendances')); ?></a>
+</li>
+<li id="date_wise_attendance"><a
+href="<?php echo e(route('date_wise_attendances.index')); ?>"> <?php echo e(__('Date wise Attendances')); ?></a>
+</li>
 
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('import-attendance')): ?>
-                                <li id="import_attendance"><a
-                                            href="<?php echo e(route('attendances.import')); ?>"> <?php echo e(__('Import Attendances')); ?></a>
-                                </li>
-                            <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-office_shift')): ?>
-                                <li id="office_shift"><a
-                                            href="<?php echo e(route('office_shift.index')); ?>"><?php echo e(__('Office Shift')); ?></a>
-                                </li>
-                            <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-holiday')): ?>
-                                <li id="holiday"><a href="<?php echo e(route('holidays.index')); ?>"><?php echo e(__('Manage Holiday')); ?></a></li>
-                            <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-leave')): ?>
-                                <li id="leave"><a href="<?php echo e(route('leaves.index')); ?>"><?php echo e(__('Manage Leaves')); ?></a></li>
-                            <?php endif; ?>
-                        </ul>
-                    </li>
-                
+
+<li id="monthly_attendance"><a
+href="<?php echo e(route('monthly_attendances.index')); ?>"> <?php echo e(__('Monthly Attendances')); ?></a>
+</li>
+
+
+<?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('edit-attendance')): ?>
+<li id="update_attendance"><a
+href="<?php echo e(route('update_attendances.index')); ?>"> <?php echo e(__('Update Attendances')); ?></a>
+</li>
+<?php endif; ?>
+
+<?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('import-attendance')): ?>
+<li id="import_attendance"><a
+href="<?php echo e(route('attendances.import')); ?>"> <?php echo e(__('Import Attendances')); ?></a>
+</li>
+<?php endif; ?>
+<?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-office_shift')): ?>
+<li id="office_shift"><a
+href="<?php echo e(route('office_shift.index')); ?>"><?php echo e(__('Office Shift')); ?></a>
+</li>
+<?php endif; ?>
+<?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-holiday')): ?>
+<li id="holiday"><a href="<?php echo e(route('holidays.index')); ?>"><?php echo e(__('Manage Holiday')); ?></a></li>
+<?php endif; ?>
+<?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-leave')): ?>
+<li id="leave"><a href="<?php echo e(route('leaves.index')); ?>"><?php echo e(__('Manage Leaves')); ?></a></li>
+<?php endif; ?>
+</ul>
+</li>
+
+
 
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('payment-module')): ?>
                     <li class="has-dropdown <?php echo e((request()->is('payroll*')) ? 'active' : ''); ?>">
 
                         <?php if(auth()->user()->can('view-payslip') || auth()->user()->can('view-paylist')): ?>
                             <a href="#Payroll" aria-expanded="false" data-toggle="collapse">
-                                <i class="dripicons-wallet"></i><span><?php echo e(trans('file.Payroll')); ?></span>
+                                <i class="dripicons-wallet"></i><span><?php echo e(__('Payroll & History')); ?></span>
                             </a>
                         <?php endif; ?>
 
@@ -548,12 +554,13 @@
                                 <?php endif; ?>
                             </ul>
                         </li>
-                    <?php endif; ?>
+                <?php endif; ?>
+
 
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-calendar')): ?>
                     <li class="<?php echo e((request()->is('calendar*')) ? 'active' : ''); ?>"><a
                                 href="<?php echo e(route('calendar.index')); ?>"> <i
-                                    class="dripicons-calendar"></i><span><?php echo e(__('HR Calendar')); ?></span></a>
+                                    class="dripicons-calendar"></i><span><?php echo e(__('Calendar')); ?></span></a>
                     </li>
                 <?php endif; ?>
 
@@ -655,7 +662,7 @@
                     <li class="has-dropdown <?php if(request()->is('training*')): ?><?php echo e((request()->is('training*')) ? 'active' : ''); ?><?php elseif(request()->is('dynamic_variable/training_type*')): ?><?php echo e((request()->is('dynamic_variable/training_type*')) ? 'active' : ''); ?><?php endif; ?>">
                         <?php if(auth()->user()->can('view-training') || auth()->user()->can('access-variable_type')|| auth()->user()->can('access-trainer')): ?>
                             <a href="#Training" aria-expanded="false" data-toggle="collapse"> <i
-                                        class="dripicons-trophy"></i><span><?php echo e(trans('file.Training')); ?></span>
+                                        class="dripicons-trophy"></i><span><?php echo e(__('Train Programs')); ?></span>
                             </a>
                         <?php endif; ?>
                         <ul id="Training" class="collapse list-unstyled ">
@@ -678,68 +685,67 @@
                     </li>
                 <?php endif; ?>
 
-                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('event-meeting')): ?>
-                    <li class="has-dropdown <?php if(request()->is('events*')): ?><?php echo e((request()->is('events*')) ? 'active' : ''); ?><?php elseif(request()->is('meetings*')): ?><?php echo e((request()->is('meetings*')) ? 'active' : ''); ?><?php endif; ?>">
 
-                        <?php if(auth()->user()->can('view-event') || auth()->user()->can('view-meeting')): ?>
-                            <a href="#Events_Meetings" aria-expanded="false" data-toggle="collapse"> <i
-                                        class="dripicons-to-do"></i><span><?php echo e(trans('file.Events')); ?> & <?php echo e(trans('file.Meetings')); ?></span>
-                            </a>
-                        <?php endif; ?>
-                        <ul id="Events_Meetings" class="collapse list-unstyled ">
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-event')): ?>
-                                <li id="events"><a
-                                            href="<?php echo e(route('events.index')); ?>"><?php echo e(trans('file.Events')); ?></a>
-                                </li>
-                            <?php endif; ?>
-                            
-                        </ul>
-                        <?php endif; ?>
-                    </li>
 
-                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('project-management')): ?>
-                        <li class="has-dropdown <?php echo e((request()->is('project-management*')) ? 'active' : ''); ?>">
-                            <?php if(auth()->user()->can('view-project') || auth()->user()->can('view-task') || auth()->user()->can('client') || auth()->user()->can('view-invoice')): ?>
-                                <a href="#Project_Management" aria-expanded="false" data-toggle="collapse">
-                                    <i class="dripicons-checklist"></i><span><?php echo e(__('Project Management')); ?></span>
-                                </a>
-                            <?php endif; ?>
-                            <ul id="Project_Management" class="collapse list-unstyled ">
-                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-project')): ?>
-                                    <li id="projects"><a
-                                                href="<?php echo e(route('projects.index')); ?>"><?php echo e(trans(('file.Projects'))); ?></a>
-                                    </li>
-                                <?php endif; ?>
-                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-task')): ?>
-                                    <li id="tasks"><a
-                                                href="<?php echo e(route('tasks.index')); ?>"><?php echo e(trans(('file.Tasks'))); ?></a>
-                                    </li>
-                                <?php endif; ?>
-                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('client')): ?>
-                                    <li id="clients"><a
-                                                href="<?php echo e(route('clients.index')); ?>"><?php echo e(trans(('file.Client'))); ?></a>
-                                    </li>
-                                <?php endif; ?>
-                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-invoice')): ?>
-                                    <li id="invoices"><a
-                                                href="<?php echo e(route('invoices.index')); ?>"><?php echo e(trans(('file.Invoice'))); ?></a>
-                                    </li>
-                                <?php endif; ?>
-                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('access-variable_type')): ?>
-                                    <li id="tax_type"><a
-                                                href="<?php echo e(route('tax_type.index')); ?>"><?php echo e(__('Tax Type')); ?></a>
-                                    </li>
-                                <?php endif; ?>
-                            </ul>
-                        </li>
+
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('customize-setting')): ?>
+                <li class="has-dropdown <?php echo e((request()->is('settings*')) ? 'active' : ''); ?>">
+
+
+                    <?php if(auth()->user()->can('view-role')||auth()->user()->can('view-general-setting')||auth()->user()->can('access-language')||auth()->user()->can('access-variable_type')||auth()->user()->can('access-variable_method')||auth()->user()->can('view-general-setting')): ?>
+                        <a href="#Customize_settings" aria-expanded="false" data-toggle="collapse">
+                            <i class="dripicons-toggles"></i><span><?php echo e(__('System Setting')); ?></span>
+                        </a>
                     <?php endif; ?>
+                    
+
+                    <ul id="Customize_settings" class="collapse list-unstyled ">
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-role')): ?>
+                            <li id="roles"><a href="<?php echo e(route('roles.index')); ?>"><?php echo e(__('Roles and Access')); ?></a></li>
+                        <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-general-setting')): ?>
+                            <li id="general_settings"><a
+                                        href="<?php echo e(route('general_settings.index')); ?>"><?php echo e(__('General Settings')); ?></a>
+                            </li>
+                        <?php endif; ?>
+
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-mail-setting')): ?>
+                            <li id="mail_setting"><a
+                                        href="<?php echo e(route('setting.mail')); ?>"><?php echo e(__('Mail Setting')); ?></a>
+                            </li>
+                        <?php endif; ?>
+
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('access-language')): ?>
+                            <li id="language_switch"><a
+                                        href="<?php echo e(route('languages.translations.index','English')); ?>"><?php echo e(__('Language Settings')); ?></a>
+                            </li>
+                        <?php endif; ?>
+
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('access-variable_type')): ?>
+                            <li id="variable_type"><a
+                                        href="<?php echo e(route('variables.index')); ?>"><?php echo e(__('Variable Type')); ?></a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('access-variable_method')): ?>
+                            <li id="variable_method"><a
+                                        href="<?php echo e(route('variables_method.index')); ?>"><?php echo e(__('Variable Method')); ?></a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('view-general-setting')): ?>
+                            <li id="ip_setting"><a href="<?php echo e(route('ip_setting.index')); ?>"><?php echo e(__('IP Settings')); ?></a></li>
+                        <?php endif; ?>
+
+                    </ul>
+                </li>
+            <?php endif; ?>
+
 
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('finance')): ?>
                         <li class="has-dropdown <?php echo e((request()->is('accounting*')) ? 'active' : ''); ?>">
 
                             <?php if(auth()->user()->can('view-account') || auth()->user()->can('view-payee') || auth()->user()->can('view-payer') ||auth()->user()->can('view-deposit')||auth()->user()->can('view-expense')||auth()->user()->can('view-transaction')||auth()->user()->can('view-balance_transfer')): ?>
                                 <a href="#Finance" aria-expanded="false" data-toggle="collapse">
-                                    <i class="dripicons-graph-pie"></i><span><?php echo e(trans('file.Finance')); ?></span>
+                                    <i class="dripicons-graph-pie"></i><span><?php echo e(__('Financial Settings')); ?></span>
                                 </a>
                             <?php endif; ?>
 
@@ -792,7 +798,7 @@
                         <li class="has-dropdown <?php if(request()->is('assets*')): ?><?php echo e((request()->is('assets*')) ? 'active' : ''); ?><?php elseif(request()->is('dynamic_variable/assets_category*')): ?><?php echo e((request()->is('dynamic_variable/assets_category*')) ? 'active' : ''); ?><?php endif; ?>">
                             <?php if(auth()->user()->can('category') || auth()->user()->can('assets')): ?>
                                 <a href="#assets" aria-expanded="false" data-toggle="collapse"> <i
-                                            class="dripicons-box"></i><span><?php echo e(trans(('file.Assets'))); ?></span>
+                                            class="dripicons-box"></i><span><?php echo e(__("Assets Management")); ?></span>
                                 </a>
                             <?php endif; ?>
                             <ul id="assets" class="collapse list-unstyled ">
@@ -841,6 +847,19 @@
                             </ul>
                         </li>
                     <?php endif; ?>
+
+                    <li class="">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </li>
+                    <li>
+
+                    </li>
+                    <li>
+
+                    </li>
             </ul>
         </div>
     </div>

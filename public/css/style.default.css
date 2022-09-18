@@ -16,7 +16,7 @@
 }
 
 .text-gray {
-    color: #868e96;
+    color: #36454F;
 }
 
 .h-100 {
@@ -45,7 +45,7 @@ a {
 }
 
 body {
-    background-color: #f4f7fa;
+    background-color: #fff;
     overflow-x: hidden;
 }
 
@@ -76,7 +76,7 @@ i[class*='icon-'] {
 
 table {
     font-size: 13px;
-    color: #666;
+    color: #000;
     width: 100% !important;
 }
 
@@ -94,7 +94,7 @@ table td {
 .btn-xs {
     font-size: 0.7em !important;
     padding: 2px 5px !important;
-    border-radius: 2px !important;
+    border-radius: 4px !important;
 }
 
 .badge {
@@ -108,7 +108,7 @@ table td {
     margin-left: 230px;
     -webkit-transition: width 0.3s linear;
     width: calc(100% - 230px);
-    background-color: #f1f1f1;
+    background-color: #f8f8f8;
     min-height: 120vh;
     padding-bottom: 50px;
 }
@@ -147,7 +147,7 @@ h2 {
 .card {
     margin-bottom: 30px;
     -webkit-box-shadow: none;
-    box-shadow: none;
+    box-shadow: 1px 1px 2px #eee;
 }
 
 .card-header h1,
@@ -428,7 +428,7 @@ nav.navbar a.menu-btn i[class*='icon-'] {
     text-transform: capitalize;
     color: #eee;
     display: block;
-    border-radius: 2px;
+    border-radius: 4px;
     margin: 5px 10px 5px 0;
     padding: 8px 10px;
 }
@@ -437,7 +437,7 @@ nav.navbar a.menu-btn i[class*='icon-'] {
 .side-navbar li a:hover,
 .side-navbar li.active>a,
 .side-navbar li a[aria-expanded="true"] {
-    background: #54595f;
+    background: #36454F;
     box-shadow: 0 0 35px 0 rgba(154, 161, 171, .15);
     color: #fff;
     text-decoration: none;
@@ -472,7 +472,7 @@ nav.navbar a.menu-btn i[class*='icon-'] {
 
 .side-navbar li ul {
     background: #000;
-    border-radius: 2px;
+    border-radius: 4px;
     position: relative;
     left: 0;
     margin: 5px 10px;
@@ -568,7 +568,7 @@ nav.navbar a.menu-btn i[class*='icon-'] {
 }
 
 .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
-    background-color: #54595f;
+    background-color: #36454F;
     width: 3px;
 }
 
@@ -782,7 +782,7 @@ nav.navbar a.menu-btn i[class*='icon-'] {
 }
 
 .statistics .user-activity .progress {
-    border-radius: 2px;
+    border-radius: 4px;
     background: #f5f5f5;
 }
 
@@ -1139,7 +1139,7 @@ input.form-control:-ms-input-placeholder {
 }
 
 select.form-control {
-    border-radius: 2px;
+    border-radius: 4px;
     border-color: #ddd;
     font-weight: 300;
     font-family: "Roboto", sans-serif;
@@ -1172,7 +1172,7 @@ select.form-control option {
 .input-group-text {
     color: #868e96;
     background: #fff;
-    border-radius: 2px;
+    border-radius: 4px;
 }
 
 .custom-control-label {
@@ -1523,7 +1523,7 @@ STYLE SWITCHER FOR DEMO
     position: fixed;
     top: 120px;
     right: 0px;
-    border-radius: 2px;
+    border-radius: 4px;
     z-index: 2;
 }
 
@@ -1565,7 +1565,7 @@ STYLE SWITCHER FOR DEMO
     font-size: 1.25rem;
     line-height: 1;
     border: 1px solid transparent;
-    border-radius: 2px;
+    border-radius: 4px;
 }
 
 .navbar-light .navbar-brand {
@@ -1691,8 +1691,8 @@ STYLE SWITCHER FOR DEMO
 }
 
 .btn-primary:hover {
-    background-color: #54595f;
-    border-color: #54595f;
+    background-color: #36454F;
+    border-color: #36454F;
 }
 
 .btn-primary:focus,
@@ -1952,8 +1952,8 @@ STYLE SWITCHER FOR DEMO
 
 .btn-default {
     color: #eee;
-    background-color: #54595f;
-    border-color: #54595f;
+    background-color: #36454F;
+    border-color: #36454F;
 }
 
 .btn-default:hover {
@@ -2247,7 +2247,7 @@ STYLE SWITCHER FOR DEMO
     padding: 0.5rem 1rem;
     font-size: 1.25rem;
     line-height: 1.5;
-    border-radius: 2px;
+    border-radius: 4px;
 }
 
 .btn-sm {
@@ -2730,7 +2730,7 @@ code {
     font-size: 90%;
     color: #bd4147;
     background-color: #f8f9fa;
-    border-radius: 2px;
+    border-radius: 4px;
 }
 
 a>code {
@@ -2786,17 +2786,17 @@ a>code {
 }
 
 .nav-pills .nav-link {
-    border-radius: 2px;
+    border-radius: 4px;
 }
 
 /*
 * 9. CARD
 */
 .card {
-    border-radius: 2px;
+    border-radius: 4px;
     border: none;
     background-color: #FFFFFF;
-    box-shadow: 0 1px 10px rgba(154, 161, 171, .25);
+    /* box-shadow: 0 1px 10px rgba(154, 161, 171, .25); */
 }
 
 .card>.list-group:first-child .list-group-item:first-child {
@@ -2831,8 +2831,8 @@ a>code {
 
 .card-header {
     padding: 1.25rem;
-    background-color: #000;
-    border-bottom: 0px solid #eee;
+    background-color: #36454F;
+    border-bottom: 0px solid #36454F;
 }
 
 .card-header h4 {
@@ -2841,8 +2841,8 @@ a>code {
 }
 
 .card-header:first-child {
-    border-radius: 2px 2px 0 0;
-    background-color: #000;
+    border-radius: 4px 4px 0 0;
+    background-color: #36454F;
     color: #eee;
 }
 
@@ -2882,7 +2882,7 @@ a>code {
 }
 
 .card-img {
-    border-radius: 2px;
+    border-radius: 4px;
 }
 
 .card-img-top {
@@ -2931,7 +2931,7 @@ a>code {
 }
 
 .right-sidebar {
-    background-color: #54595f;
+    background-color: #36454F;
     box-shadow: 0 0 35px 0 rgba(154, 161, 171, .15);
     height: 100%;
     padding: 20px 5px;
@@ -2950,7 +2950,7 @@ a>code {
 }
 
 .right-sidebar li {
-    border-bottom: 1px solid #54595f;
+    border-bottom: 1px solid #36454F;
     list-style: none;
     padding: 0 20px;
     line-height: 50px;
@@ -2967,7 +2967,7 @@ a>code {
 .side-navbar {
     background-color: #000;
     position: fixed;
-    top: 65px;
+    top: 61px;
     left: 0;
     width: 200px;
     height: calc(100%);
@@ -3044,8 +3044,8 @@ input.form-control-custom:checked+label::before {
 
 .btn-primary {
     color: #eee;
-    background-color: #54595f;
-    border-color: #54595f;
+    background-color: #36454F;
+    border-color: #36454F;
 }
 
 .btn-primary.disabled,
@@ -3063,8 +3063,8 @@ input.form-control-custom:checked+label::before {
 
 .btn-outline-primary:hover {
     color: #fff;
-    background-color: #54595f;
-    border-color: #54595f;
+    background-color: #36454F;
+    border-color: #36454F;
 }
 
 .btn-outline-primary.disabled,
@@ -3077,8 +3077,8 @@ input.form-control-custom:checked+label::before {
 .btn-outline-primary:not([disabled]):not(.disabled).active,
 .show>.btn-outline-primary.dropdown-toggle {
     color: #fff;
-    background-color: #54595f;
-    border-color: #54595f;
+    background-color: #36454F;
+    border-color: #36454F;
     -webkit-box-shadow: 0 0 0 0.2rem rgba(51, 179, 90, 0.5);
     box-shadow: 0 0 0 0.2rem rgba(51, 179, 90, 0.5);
 }
@@ -3108,8 +3108,8 @@ a {
 .page-link {
     padding: 0.5rem 0.75rem;
     color: #aaa;
-    background-color: #54595f;
-    border: 1px solid #54595f;
+    background-color: #36454F;
+    border: 1px solid #36454F;
     font-size: 13px;
     line-height: 22px !important
 }
@@ -3308,7 +3308,7 @@ button:focus,
 
 .btn.btn-default,
 .btn.btn-default:focus {
-    background-color: #54595f;
+    background-color: #36454F;
     color: #eee;
     text-align: left;
 }
@@ -3534,7 +3534,7 @@ nav.navbar a.menu-btn {
 }
 
 nav.navbar a.menu-btn:hover {
-    background: #54595f;
+    background: #36454F;
     border: 0px solid #1e1c66;
     color: #FFF;
 }
