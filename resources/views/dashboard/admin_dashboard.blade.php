@@ -7,9 +7,7 @@
                 <div><h1 class="thin-text">{{trans('file.Welcome')}} {{auth()->user()->username}}</h1></div>
                 <div><h4 class="thin-text">{{__('Today is')}} {{now()->englishDayOfWeek}} {{now()->format(env('Date_Format'))}}</h4></div>
             </div>
-            <div class="row">
-                @include('calendarable.calendar')
-            </div>
+
             <div class="row">
                 <div class="col-sm-2">
                     <div class="wrapper count-title text-center">
@@ -164,6 +162,9 @@
                 </div>
             </div>
 
+            <div class="row">
+                @include('calendarable.calendar')
+            </div>
 
         </div>
 

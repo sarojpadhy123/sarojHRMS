@@ -38,7 +38,7 @@ body{
 footer, header, section {
 	display:block;
 }
-a{ color:#1e1c66; text-decoration:none; cursor:pointer; }
+a{ color:#023BF9; text-decoration:none; cursor:pointer; }
 a:hover { text-decoration:underline }
 p, ul, ol{
 	margin:18px 0;
@@ -127,7 +127,7 @@ strong{
 	z-index:100;
 }
 #documenter_sidebar a:hover{
-	color: #1e1c66;
+	color: #023BF9;
 }
 #documenter_sidebar a.current{
 	color: #1e1c66;
